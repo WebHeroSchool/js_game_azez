@@ -8,17 +8,25 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <div class="grid-content">
+    <div id="game"></div>
+    <div class="grid-content" id="content">
       <h1 class="grid-content__title">Выберите уровень сложности:</h1>
       <p class="grid-content__desc">Выберите сложность и игра начнется. Чем выше уровень - тем больше будет выборка карт.</p>
-      <ul class="grid-content__menu">
-        <li class="menu__complication">Простой</li>
-        <li class="menu__complication">Средний</li>
-        <li class="menu__complication menu__complication_hard">Сложный</li>
-      </ul>
-      <button class="grid-content__button">Начать игру</button>
-      <img class="grid-content__img-cart-one" src="images/Перевернутая карта.png" alt="Карта";>
-      <img class="grid-content__img-cart-two" src="images/Перевернутая карта.png" alt="Карта";>
+      <div class="grid-content__level-menu">
+        <h2 class="level-menu level-menu__easy selected" id="easy">Простой</h2>
+        <h2 class="level-menu level-menu__medium"  id="medium">Средний</h2>
+        <h2 class="level-menu level-menu__hard" id="hard">Сложный</h2>
+      </div>
+      <button class="grid-content__button" id="gameStart">Начать игру</button>
+      <div class="grid-content__cards">
+        <div class="card card-one">
+          <img class="img-card" src="images/Перевернутая карта.png" alt="Карта";>
+        </div>
+        <div class="card card-two">
+          <img class="img-card" src="images/Перевернутая карта.png" alt="Карта";>
+        <div>
+      </div>
     </div>
+    <script src="script.js"></script> 
   </body>
 </html>

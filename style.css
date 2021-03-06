@@ -1,6 +1,17 @@
+@keyframes cardHover {
+  0% { transform: none; }
+  50% {transform: translateY(-32px) rotate(-3deg);}
+  100% {transform: translateY(-23px);}
+}
+
+@keyframes rotateCard {
+  0% {transform: translateY(-23px);}
+  100% {transform: rotateY(180deg);}
+}
+
 .grid-content {
   display: grid;
-  grid-template-columns: 103px 753px 129px 395px 70px;
+  grid-template-columns: 103px 753px 129px 395px 60px;
   grid-template-rows: 129px 75px 83px 225px 112px 267px 133px;
 }
 
@@ -28,31 +39,62 @@
   line-height: 22px;
 }
 
-.grid-content__menu {
+.grid-content__level-menu {
   grid-column: 2 / 3;
   grid-row: 4 / 5;
+  display: grid;
+  grid-template-columns: 49px 100%;
   margin: 0;
   list-style-type: none;
-  padding-left: 49px;
+  padding-left: 0;
 }
 
-/*.grid-content__menu::before {
-  position: absolute;
-  display: block;
-  content: '';
-  border-top: 3px solid #309;
-  width: 23px;
-  height: 0;
+.level-menu__easy {
+  position: relative;
+  cursor: pointer;
 }
-*/
-.menu__complication {
-  
+
+.level-menu__medium {
+  position: relative;
+  cursor: pointer;
+}
+
+.level-menu__hard {
+  position: relative;
+  cursor: pointer;
+}
+
+.selected::before {
+  grid-column: 1 / 2;
+  position: absolute;
+  display: inline;
+  content: '';
+  box-shadow: 0 0 0 #000;
+  width: 18px;
+  height: 18px;
+  background-color: red;
+  transform: rotate(45deg);
+  top: 20px;
+  left: -46px;
+}
+
+.hidden {
+  display: none;
+}
+
+.level-menu {
+  grid-column: 2 / 3;
   font-weight: bold;
   font-style: normal;
   font-size: 50px;  
   margin-top: 0;
-  margin-bottom: 24px;
-  line-height: 59px;  
+  margin-bottom: 25px;
+  line-height: 59px;
+}
+
+.level-menu:hover {
+  color: rgba(204, 0, 0, .8);
+  transition: color .4s ease-in-out;
 }
 
 .grid-content__button {
@@ -68,21 +110,44 @@
   height: 95px;
   line-height: 37px;
   padding: 0;
+  cursor: pointer;
 }
 
-.grid-content__img-cart-one {
-  grid-column: 3 / 4;
+.grid-content__cards {
+  grid-column: 3 / 5;
   grid-row: 5 / 7;
-  padding-left: 35px;
-  padding-top: 15px;
+}
+
+.card {
+  position: relative;
+  width: 218px;
+  height: 341px;
+  margin: 12px;
+  transform-style: preserve-3d;
+}
+
+.card:hover {
+  animation: cardHover .8s ease-in-out forwards;
+}
+
+.card__front {
+  position: absolute;
+  transform: rotateY(180deg);
+}
+
+.card__back {
+  position: absolute;
+}
+
+.card-one {
+  left: 34px;
+  top: 19px;
   transform: rotate(11.9deg);
 }
 
-.grid-content__img-cart-two {
-  grid-column: 4 / 5;
-  grid-row: 5 / 7;
-  padding-left: 98px;
-  padding-top: 7px;
+.card-two {
+  left: 210px;
+  top: -305px;
   transform: rotate(39.26deg);
 }
 
@@ -96,4 +161,1144 @@ body {
   color: #fff;
   max-width: 1440px;
   min-width: 320px;
+}
+
+#back {
+  position: absolute;
+  cursor: pointer;
+  bottom: 5px;
+  right: 5px;
+}
+
+.easy-game {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  padding-top: 61px;
+}
+
+.medium-game {
+  flex-wrap: wrap;
+  width: 930px;
+  height: auto;
+  margin: 0 auto;
+  padding-top: 108px;
+}
+
+.hard-game {
+  flex-wrap: wrap;
+  width: 1210px;
+  height: auto;
+  margin: 0 auto;
+  padding-top: 18px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.rotate {
+  animation: rotateCard .4s ease-in-out forwards !important;
+}
+
+.field {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (min-width: 1025px) and (max-width: 1400px) {
+  .grid-content {
+    display: grid;
+    grid-template-columns: 23px 673px 49px 300px 45px;
+    grid-template-rows: 89px 55px 63px 225px 92px 207px 113px;
+  }
+
+  .grid-content__title {
+    grid-column: 2 / 4;
+    grid-row: 2 / 3;
+    font-weight: bold;
+    font-style: normal;
+    font-size: 47px;
+    max-width: 833px;
+    margin-top: 0;
+    margin-bottom: 8px;
+    line-height: 57px;
+  }
+
+  .grid-content__desc {
+    grid-column: 2 / 4;
+    grid-row: 3 / 4;
+    font-family: 'roboto', sans-serif;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 16px;
+    margin-top: 0;
+    margin-bottom: 60px;
+    line-height: 22px;
+  }
+
+  .grid-content__level-menu {
+    grid-column: 2 / 3;
+    grid-row: 4 / 5;
+    display: grid;
+    grid-template-columns: 49px 100%;
+    margin: 0;
+    list-style-type: none;
+    padding-left: 0;
+  }
+
+  .level-menu__easy {
+    position: relative;
+    cursor: pointer;
+  }
+
+  .level-menu__medium {
+    position: relative;
+    cursor: pointer;
+  }
+
+  .level-menu__hard {
+    position: relative;
+    cursor: pointer;
+  }
+
+  .selected::before {
+    grid-column: 1 / 2;
+    position: absolute;
+    display: inline;
+    content: '';
+    box-shadow: 0 0 0 #000;
+    width: 13px;
+    height: 13px;
+    background-color: red;
+    transform: rotate(45deg);
+    top: 20px;
+    left: -46px;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  .level-menu {
+    grid-column: 2 / 3;
+    font-weight: bold;
+    font-style: normal;
+    font-size: 40px;  
+    margin-top: 0;
+    margin-bottom: 15px;
+    line-height: 49px;
+    cursor: pointer; 
+  }
+
+  .level-menu:hover {
+    color: rgba(204, 0, 0, .8);
+    transition: color .4s ease-in-out;
+  }
+
+  .grid-content__button {
+    grid-column: 2 / 3;
+    grid-row: 6 / 7;
+    background: #d62b2e;
+    border-radius: 7px;
+    color: #fff;
+    font-weight: bold;
+    font-style: normal;
+    font-size: 25px;
+    width: 292px;
+    height: 75px;
+    line-height: 27px;
+    padding: 0;
+    cursor: pointer;
+  }
+
+  .grid-content__cards {
+    grid-column: 3 / 5;
+    grid-row: 5 / 7;
+  }
+
+  .card {
+    position: relative;
+    width: 18vw;
+    height: calc(16vw*1.75);
+    margin: 3px;
+    transform-style: preserve-3d;
+    background-size: cover;
+  }
+
+  .card:hover {
+    animation: cardHover .8s ease-in-out forwards;
+  }
+
+  .card__front {
+    background-size: cover;
+    width: 18vw;
+    height: calc(16vw*1.75);
+    margin: 4px;
+    position: absolute;
+    transform: rotateY(180deg);
+  }
+
+  .card__back {
+    background-size: cover;
+    width: 18vw;
+    height: calc(16vw*1.75);
+    margin: 4px;
+    position: absolute;
+  }
+
+  .card-one {
+    background-size: cover;
+    left: -34px;
+    top: -39px;
+    transform: rotate(11.9deg);
+  }
+
+  .card-two {
+    background-size: cover;
+    left: 84px;
+    top: -295px;
+    transform: rotate(39.26deg);
+  }
+
+  .img-card {
+    width: 18vw;
+    height: calc(16vw*1.75);
+  }
+
+  body {
+    background-image: url(images/Background.png);
+    font-family: 'roboto', sans-serif;
+    font-weight: bold;
+    font-style: normal;
+    font-size: 57px;
+    margin: 0 auto;
+    color: #fff;
+    max-width: 1440px;
+    min-width: 320px;
+  }
+
+  #back {
+    position: absolute;
+    cursor: pointer;
+    bottom: 5px;
+    right: 5px;
+  }
+
+  .easy-game {
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    padding-top: 61px;
+  }
+
+  .medium-game {
+    flex-wrap: wrap;
+    width: 60vw;
+    height: auto;
+    margin: 0 auto;
+    padding-top: 80px;
+  }
+
+  .hard-game {
+    flex-wrap: wrap;
+    width: 100vw;
+    height: auto;
+    margin: 0 auto;
+    padding-top: 80px;
+  }
+
+  .hidden {
+    display: none !important;
+  }
+
+  .rotate {
+    animation: rotateCard .4s ease-in-out forwards !important;
+  }
+
+  .field {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@media screen and (min-width: 961px) and (max-width: 1024px) {
+  .grid-content {
+    display: grid;
+    grid-template-columns: 23px 673px 49px 300px 45px;
+    grid-template-rows: 89px 55px 63px 225px 92px 207px 113px;
+  }
+
+  .grid-content__title {
+    grid-column: 2 / 4;
+    grid-row: 2 / 3;
+    font-weight: bold;
+    font-style: normal;
+    font-size: 47px;
+    max-width: 833px;
+    margin-top: 0;
+    margin-bottom: 8px;
+    line-height: 57px;
+  }
+
+  .grid-content__desc {
+    grid-column: 2 / 4;
+    grid-row: 3 / 4;
+    font-family: 'roboto', sans-serif;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 16px;
+    margin-top: 0;
+    margin-bottom: 60px;
+    line-height: 22px;
+  }
+
+  .grid-content__level-menu {
+    grid-column: 2 / 3;
+    grid-row: 4 / 5;
+    display: grid;
+    grid-template-columns: 49px 100%;
+    margin: 0;
+    list-style-type: none;
+    padding-left: 0;
+  }
+
+  .level-menu__easy {
+    position: relative;
+    cursor: pointer;
+  }
+
+  .level-menu__medium {
+    position: relative;
+    cursor: pointer;
+  }
+
+  .level-menu__hard {
+    position: relative;
+    cursor: pointer;
+  }
+
+  .selected::before {
+    grid-column: 1 / 2;
+    position: absolute;
+    display: inline;
+    content: '';
+    box-shadow: 0 0 0 #000;
+    width: 13px;
+    height: 13px;
+    background-color: red;
+    transform: rotate(45deg);
+    top: 20px;
+    left: -46px;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  .level-menu {
+    grid-column: 2 / 3;
+    font-weight: bold;
+    font-style: normal;
+    font-size: 40px;  
+    margin-top: 0;
+    margin-bottom: 15px;
+    line-height: 49px;
+    cursor: pointer; 
+  }
+
+  .level-menu:hover {
+    color: rgba(204, 0, 0, .8);
+    transition: color .4s ease-in-out;
+  }
+
+  .grid-content__button {
+    grid-column: 2 / 3;
+    grid-row: 6 / 7;
+    background: #d62b2e;
+    border-radius: 7px;
+    color: #fff;
+    font-weight: bold;
+    font-style: normal;
+    font-size: 25px;
+    width: 292px;
+    height: 75px;
+    line-height: 27px;
+    padding: 0;
+    cursor: pointer;
+  }
+
+  .grid-content__cards {
+    grid-column: 3 / 5;
+    grid-row: 5 / 7;
+  }
+
+  .card {
+    position: relative;
+    width: 18vw;
+    height: calc(16vw*1.75);
+    margin: 3px;
+    transform-style: preserve-3d;
+    background-size: cover;
+  }
+
+  .card:hover {
+    animation: cardHover .8s ease-in-out forwards;
+  }
+
+  .card__front {
+    background-size: cover;
+    width: 18vw;
+    height: calc(16vw*1.75);
+    margin: 4px;
+    position: absolute;
+    transform: rotateY(180deg);
+  }
+
+  .card__back {
+    background-size: cover;
+    width: 18vw;
+    height: calc(16vw*1.75);
+    margin: 4px;
+    position: absolute;
+  }
+
+  .card-one {
+    background-size: cover;
+    left: -34px;
+    top: -39px;
+    transform: rotate(11.9deg);
+  }
+
+  .card-two {
+    background-size: cover;
+    left: 84px;
+    top: -295px;
+    transform: rotate(39.26deg);
+  }
+
+  .img-card {
+    width: 18vw;
+    height: calc(16vw*1.75);
+  }
+
+  body {
+    background-image: url(images/Background.png);
+    font-family: 'roboto', sans-serif;
+    font-weight: bold;
+    font-style: normal;
+    font-size: 57px;
+    margin: 0 auto;
+    color: #fff;
+    max-width: 1440px;
+    min-width: 320px;
+  }
+
+  #back {
+    position: absolute;
+    cursor: pointer;
+    bottom: 5px;
+    right: 5px;
+  }
+
+  .easy-game {
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    padding-top: 61px;
+  }
+
+  .medium-game {
+    flex-wrap: wrap;
+    width: 65vw;
+    height: auto;
+    margin: 0 auto;
+    padding-top: 50px;
+  }
+
+  .hard-game {
+    flex-wrap: wrap;
+    width: 100vw;
+    height: auto;
+    margin: 0 auto;
+    padding-top: 50px;
+  }
+
+  .hidden {
+    display: none !important;
+  }
+
+  .rotate {
+    animation: rotateCard .4s ease-in-out forwards !important;
+  }
+
+  .field {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@media screen and (min-width: 641px) and (max-width: 960px) {
+  .grid-content {
+    display: grid;
+    grid-template-columns: 23px 543px 49px 100px 45px;
+    grid-template-rows: 89px 55px 63px 165px 62px 57px 63px;
+  }
+
+  .grid-content__title {
+    grid-column: 2 / 4;
+    grid-row: 2 / 3;
+    font-weight: bold;
+    font-style: normal;
+    font-size: 37px;
+    max-width: 833px;
+    margin-top: 0;
+    margin-bottom: 8px;
+    line-height: 47px;
+  }
+
+  .grid-content__desc {
+    grid-column: 2 / 4;
+    grid-row: 3 / 4;
+    font-family: 'roboto', sans-serif;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 12px;
+    margin-top: 0;
+    margin-bottom: 60px;
+    line-height: 18px;
+  }
+
+  .grid-content__level-menu {
+    grid-column: 2 / 3;
+    grid-row: 4 / 5;
+    display: grid;
+    grid-template-columns: 49px 100%;
+    margin: 0;
+    list-style-type: none;
+    padding-left: 0;
+  }
+
+  .level-menu__easy {
+    position: relative;
+    cursor: pointer;
+  }
+
+  .level-menu__medium {
+    position: relative;
+    cursor: pointer;
+  }
+
+  .level-menu__hard {
+    position: relative;
+    cursor: pointer;
+  }
+
+  .selected::before {
+    grid-column: 1 / 2;
+    position: absolute;
+    display: inline;
+    content: '';
+    box-shadow: 0 0 0 #000;
+    width: 13px;
+    height: 13px;
+    background-color: red;
+    transform: rotate(45deg);
+    top: 20px;
+    left: -26px;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  .level-menu {
+    grid-column: 2 / 3;
+    font-weight: bold;
+    font-style: normal;
+    font-size: 30px;  
+    margin-top: 0;
+    margin-bottom: 15px;
+    line-height: 49px;
+    cursor: pointer; 
+  }
+
+  .level-menu:hover {
+    color: rgba(204, 0, 0, .8);
+    transition: color .4s ease-in-out;
+  }
+
+  .grid-content__button {
+    grid-column: 2 / 3;
+    grid-row: 6 / 7;
+    background: #d62b2e;
+    border-radius: 7px;
+    color: #fff;
+    font-weight: bold;
+    font-style: normal;
+    font-size: 20px;
+    width: 252px;
+    height: 55px;
+    line-height: 25px;
+    padding: 0;
+    cursor: pointer;
+  }
+
+  .grid-content__cards {
+    grid-column: 3 / 5;
+    grid-row: 5 / 7;
+  }
+
+  .card {
+    position: relative;
+    width: 18vw;
+    height: calc(16vw*1.75);
+    margin: 3px;
+    transform-style: preserve-3d;
+    background-size: cover;
+  }
+
+  .card:hover {
+    animation: cardHover .8s ease-in-out forwards;
+  }
+
+  .card__front {
+    background-size: cover;
+    width: 18vw;
+    height: calc(16vw*1.75);
+    margin: 4px;
+    position: absolute;
+    transform: rotateY(180deg);
+  }
+
+  .card__back {
+    background-size: cover;
+    width: 18vw;
+    height: calc(16vw*1.75);
+    margin: 4px;
+    position: absolute;
+  }
+
+  .card-one {
+    background-size: cover;
+    left: -34px;
+    top: -39px;
+    transform: rotate(11.9deg);
+  }
+
+  .card-two {
+    background-size: cover;
+    left: 24px;
+    top: -195px;
+    transform: rotate(39.26deg);
+  }
+
+  .img-card {
+    width: 18vw;
+    height: calc(16vw*1.75);
+  }
+
+  body {
+    background-image: url(images/Background.png);
+    font-family: 'roboto', sans-serif;
+    font-weight: bold;
+    font-style: normal;
+    font-size: 57px;
+    margin: 0 auto;
+    color: #fff;
+    max-width: 1440px;
+    min-width: 320px;
+  }
+
+  #back {
+    position: absolute;
+    cursor: pointer;
+    bottom: 5px;
+    right: 5px;
+  }
+
+  .easy-game {
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    padding-top: 61px;
+  }
+
+  .medium-game {
+    flex-wrap: wrap;
+    width: 70vw;
+    height: auto;
+    margin: 0 auto;
+    padding-top: 20px;
+  }
+
+  .hard-game {
+    flex-wrap: wrap;
+    width: 95vw;
+    height: auto;
+    margin: 0 auto;
+    padding-top: 20px;
+  }
+
+  .hidden {
+    display: none !important;
+  }
+
+  .rotate {
+    animation: rotateCard .4s ease-in-out forwards !important;
+  }
+
+  .field {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@media screen and (min-width: 481px) and (max-width: 640px) {
+  .grid-content {
+    display: grid;
+    grid-template-columns: 23px 403px 49px 100px 45px;
+    grid-template-rows: 39px 35px 33px 75px 62px 57px 63px;
+  }
+
+  .grid-content__title {
+    grid-column: 2 / 4;
+    grid-row: 2 / 3;
+    font-weight: bold;
+    font-style: normal;
+    font-size: 27px;
+    max-width: 833px;
+    margin-top: 0;
+    margin-bottom: 8px;
+    line-height: 37px;
+  }
+
+  .grid-content__desc {
+    grid-column: 2 / 4;
+    grid-row: 3 / 4;
+    font-family: 'roboto', sans-serif;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 9px;
+    margin-top: 0;
+    margin-bottom: 60px;
+    line-height: 16px;
+  }
+
+  .grid-content__level-menu {
+    grid-column: 2 / 3;
+    grid-row: 4 / 5;
+    display: grid;
+    grid-template-columns: 32px 100%;
+    margin: 0;
+    list-style-type: none;
+    padding-left: 0;
+  }
+
+  .level-menu__easy {
+    position: relative;
+    cursor: pointer;
+  }
+
+  .level-menu__medium {
+    position: relative;
+    cursor: pointer;
+  }
+
+  .level-menu__hard {
+    position: relative;
+    cursor: pointer;
+  }
+
+  .selected::before {
+    grid-column: 1 / 2;
+    position: absolute;
+    display: inline;
+    content: '';
+    box-shadow: 0 0 0 #000;
+    width: 10px;
+    height: 10px;
+    background-color: red;
+    transform: rotate(45deg);
+    top: 10px;
+    left: -26px;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  .level-menu {
+    grid-column: 2 / 3;
+    font-weight: bold;
+    font-style: normal;
+    font-size: 20px;  
+    margin-top: 0;
+    margin-bottom: 10px;
+    line-height: 29px;
+    cursor: pointer; 
+  }
+
+  .level-menu:hover {
+    color: rgba(204, 0, 0, .8);
+    transition: color .4s ease-in-out;
+  }
+
+  .grid-content__button {
+    grid-column: 2 / 3;
+    grid-row: 6 / 7;
+    background: #d62b2e;
+    border-radius: 7px;
+    color: #fff;
+    font-weight: bold;
+    font-style: normal;
+    font-size: 16px;
+    width: 202px;
+    height: 45px;
+    line-height: 25px;
+    padding: 0;
+    cursor: pointer;
+  }
+
+  .grid-content__cards {
+    grid-column: 3 / 5;
+    grid-row: 5 / 7;
+  }
+
+  .card {
+    position: relative;
+    width: 16vw;
+    height: calc(14vw*1.75);
+    margin: 3px;
+    transform-style: preserve-3d;
+    background-size: cover;
+  }
+
+  .card:hover {
+    animation: cardHover .8s ease-in-out forwards;
+  }
+
+  .card__front {
+    background-size: cover;
+    width: 16vw;
+    height: calc(14vw*1.75);
+    margin: 4px;
+    position: absolute;
+    transform: rotateY(180deg);
+  }
+
+  .card__back {
+    background-size: cover;
+    width: 16vw;
+    height: calc(14vw*1.75);
+    margin: 4px;
+    position: absolute;
+  }
+
+  .card-one {
+    background-size: cover;
+    left: -134px;
+    top: -39px;
+    transform: rotate(11.9deg);
+  }
+
+  .card-two {
+    background-size: cover;
+    left: -86px;
+    top: -145px;
+    transform: rotate(39.26deg);
+  }
+
+  .img-card {
+    width: 18vw;
+    height: calc(16vw*1.75);
+  }
+
+  body {
+    background-image: url(images/Background.png);
+    font-family: 'roboto', sans-serif;
+    font-weight: bold;
+    font-style: normal;
+    font-size: 57px;
+    margin: 0 auto;
+    color: #fff;
+    max-width: 1440px;
+    min-width: 320px;
+  }
+
+  #back {
+    position: absolute;
+    cursor: pointer;
+    bottom: 5px;
+    right: 5px;
+  }
+
+  .easy-game {
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    padding-top: 41px;
+  }
+
+  .medium-game {
+    flex-wrap: wrap;
+    width: 60vw;
+    height: auto;
+    margin: 0 auto;
+    padding-top: 20px;
+  }
+
+  .hard-game {
+    flex-wrap: wrap;
+    width: 95vw;
+    height: auto;
+    margin: 0 auto;
+    padding-top: 20px;
+  }
+
+  .hidden {
+    display: none !important;
+  }
+
+  .rotate {
+    animation: rotateCard .4s ease-in-out forwards !important;
+  }
+
+  .field {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+@media screen and (min-width: 320px) and (max-width: 480px) {
+  .grid-content {
+    display: grid;
+    grid-template-columns: 23px 303px 49px 100px 45px;
+    grid-template-rows: 39px 35px 33px 75px 62px 57px 63px;
+  }
+
+  .grid-content__title {
+    grid-column: 2 / 4;
+    grid-row: 2 / 3;
+    font-weight: bold;
+    font-style: normal;
+    font-size: 22px;
+    max-width: 833px;
+    margin-top: 0;
+    margin-bottom: 8px;
+    line-height: 32px;
+  }
+
+  .grid-content__desc {
+    grid-column: 2 / 4;
+    grid-row: 3 / 4;
+    font-family: 'roboto', sans-serif;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 7px;
+    margin-top: 0;
+    margin-bottom: 60px;
+    line-height: 12px;
+  }
+
+  .grid-content__level-menu {
+    grid-column: 2 / 3;
+    grid-row: 4 / 5;
+    display: grid;
+    grid-template-columns: 32px 100%;
+    margin: 0;
+    list-style-type: none;
+    padding-left: 0;
+  }
+
+  .level-menu__easy {
+    position: relative;
+    cursor: pointer;
+  }
+
+  .level-menu__medium {
+    position: relative;
+    cursor: pointer;
+  }
+
+  .level-menu__hard {
+    position: relative;
+    cursor: pointer;
+  }
+
+  .selected::before {
+    grid-column: 1 / 2;
+    position: absolute;
+    display: inline;
+    content: '';
+    box-shadow: 0 0 0 #000;
+    width: 10px;
+    height: 10px;
+    background-color: red;
+    transform: rotate(45deg);
+    top: 5px;
+    left: -26px;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  .level-menu {
+    grid-column: 2 / 3;
+    font-weight: bold;
+    font-style: normal;
+    font-size: 18px;  
+    margin-top: 0;
+    margin-bottom: 10px;
+    line-height: 24px;
+    cursor: pointer; 
+  }
+
+  .level-menu:hover {
+    color: rgba(204, 0, 0, .8);
+    transition: color .4s ease-in-out;
+  }
+
+  .grid-content__button {
+    grid-column: 2 / 3;
+    grid-row: 6 / 7;
+    background: #d62b2e;
+    border-radius: 7px;
+    color: #fff;
+    font-weight: bold;
+    font-style: normal;
+    font-size: 16px;
+    width: 202px;
+    height: 45px;
+    line-height: 25px;
+    padding: 0;
+    cursor: pointer;
+  }
+
+  .grid-content__cards {
+    grid-column: 3 / 5;
+    grid-row: 5 / 7;
+  }
+
+  .card {
+    position: relative;
+    width: 16vw;
+    height: calc(14vw*1.75);
+    margin: 3px;
+    transform-style: preserve-3d;
+    background-size: cover;
+  }
+
+  .card:hover {
+    animation: cardHover .8s ease-in-out forwards;
+  }
+
+  .card__front {
+    background-size: cover;
+    width: 16vw;
+    height: calc(14vw*1.75);
+    margin: 4px;
+    position: absolute;
+    transform: rotateY(180deg);
+  }
+
+  .card__back {
+    background-size: cover;
+    width: 16vw;
+    height: calc(14vw*1.75);
+    margin: 4px;
+    position: absolute;
+  }
+
+  .card-one {
+    background-size: cover;
+    left: -10px;
+    top: 10px;
+    transform: rotate(11.9deg);
+  }
+
+  .card-two {
+    background-size: cover;
+    left: 26px;
+    top: -65px;
+    transform: rotate(39.26deg);
+  }
+
+  .img-card {
+    width: 18vw;
+    height: calc(16vw*1.75);
+  }
+
+  body {
+    background-image: url(images/Background.png);
+    font-family: 'roboto', sans-serif;
+    font-weight: bold;
+    font-style: normal;
+    font-size: 57px;
+    margin: 0 auto;
+    color: #fff;
+    max-width: 1440px;
+    min-width: 320px;
+  }
+
+  #back {
+    position: absolute;
+    cursor: pointer;
+    bottom: 5px;
+    right: 5px;
+  }
+
+  .easy-game {
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+  }
+
+  .medium-game {
+    flex-wrap: wrap;
+    width: 60vw;
+    height: auto;
+    margin: 0 auto;
+    padding-top: 15px;
+  }
+
+  .hard-game {
+    flex-wrap: wrap;
+    width: 90vw;
+    height: auto;
+    margin: 0 auto;
+    padding-top: 15px;
+  }
+
+  .hidden {
+    display: none !important;
+  }
+
+  .rotate {
+    animation: rotateCard .4s ease-in-out forwards !important;
+  }
+
+  .field {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
